@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promise & Async/Await Example</h2>
+<p id="demo"></p>
+
+<script>
+function myMarksDisplayer(message) {
+    document.getElementById("demo").innerHTML = message;
+}
+
+// Creating a Promise
+function getMarks() {
+    return new Promise(function(resolve, reject) {
+        let marks = 60;   // Try changing: 85, -5, 150
+
+        if (marks >= 0 && marks <= 100) {
+            resolve("✅ Your marks is : " + marks);
+        } else {
+            reject("❌ Error: Invalid marks");
+        }
+    });
+}
+
+// Using Promise with async / await
+async function showMarks() {
+    try {
+        let result = await getMarks();   // waits until promise finishes
+        myMarksDisplayer(result);        // success
+    } catch (error) {
+        myMarksDisplayer(error);         // failure
+    }
+}
+
+// Run the function
+showMarks();
+</script>
+
+</body>
+</html>
