@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promise + Async & Await</h2>
+<p id="demo">Waiting...</p>
+
+<script>
+function showMessage(msg) {
+    document.getElementById("demo").innerHTML = msg;
+}
+
+// Promise function
+function getResult() {
+    return new Promise((resolve, reject) => {
+        let marks = 75;   // Try 85, -10, 120
+
+        setTimeout(() => {
+            if (marks >= 0 && marks <= 100) {
+                resolve("✅ Passed! Your marks: " + marks);
+            } else {
+                reject("❌ Error: Invalid marks");
+            }
+        }, 2000); // simulate delay
+    });
+}
+
+// Async function using await
+async function displayResult() {
+    showMessage("⏳ Checking marks...");
+
+    try {
+        let result = await getResult();   // wait for promise
+        showMessage(result);             // success
+    } catch (error) {
+        showMessage(error);              // failure
+    }
+}
+
+// Run
+displayResult();
+</script>
+
+</body>
+</html>
